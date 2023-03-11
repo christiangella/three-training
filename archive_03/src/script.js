@@ -31,7 +31,9 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.render(scene, camera)
 
 const tick = () => {
-
+mesh.position.x += 0.01
+renderer.render(scene,camera)
+window.requestAnimationFrame(tick)
 }
 
 tick()
