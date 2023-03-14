@@ -1,6 +1,15 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
+const textureLoader = new THREE.TextureLoader()
+
+const doorColorTexture = textureLoader.load('/textures/door/color.jpg')
+const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg')
+const doorAmbientTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
+
+const matcapTexture = textureLoader.load('/textures/matcaps/1.png')
+const gradientTexture = textureLoader.load('/textures/gradients/3.jpg')
+
 /**
  * Base
  */
@@ -10,7 +19,18 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-const material = new THREE.MeshBasicMaterial( { color: 0xfaf200})
+// const material = new THREE.MeshBasicMaterial()
+// material.map = doorColorTexture
+// //material.color.set('#f2f200')
+// // material.color = new THREE.Color('pink')
+// // material.wireframe = true
+// // material.opacity = 0.4
+// // material.transparent = true
+// // material.alphaMap = doorAlphaTexture
+// material.side = THREE.DoubleSide
+
+const material = new THREE.MeshNormalMaterial()
+
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 16, 16),
     material
