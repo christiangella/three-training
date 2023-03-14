@@ -54,12 +54,16 @@ const scene = new THREE.Scene()
 const material = new THREE.MeshStandardMaterial()
 material.metalness = 0.334
 material.roughness = 0.2472
+material.map = doorColorTexture
+material.aoMap = doorAmbientTexture
+material.aoMapIntensity = 0.7384
 
 gui.add(material, 'metalness')
     .min(0)
     .max(1)
     .step(0.0001)
 gui.add(material, 'roughness').min(0).max(1).step(0.0001)
+gui.add(material, 'aoMapIntensity').min(0).max(10).step(0.0001)
 
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 16, 16),
@@ -67,15 +71,27 @@ const sphere = new THREE.Mesh(
 )
 sphere.position.x = -1.5
 
+sphere.geometry.setAttribute(
+    'uv2', new THREE.BufferAttribute(sphere.geometry.attributes.uv.array, 2)
+    )
+
 const plane = new THREE.Mesh(
     new THREE.PlaneGeometry(1,1),
     material
 )
 
+plane.geometry.setAttribute(
+    'uv2', new THREE.BufferAttribute(plane.geometry.attributes.uv.array, 2)
+    )
+
 const torus = new THREE.Mesh(
     new THREE.TorusGeometry(0.3, 0.2, 16, 32),
     material
 )
+
+torus.geometry.setAttribute(
+    'uv2', new THREE.BufferAttribute(torus.geometry.attributes.uv.array, 2)
+    )
 
 torus.position.x = 1.5
 
