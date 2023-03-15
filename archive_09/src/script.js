@@ -39,7 +39,7 @@ fontLoader.load(
         const material = new THREE.MeshNormalMaterial()
 
         const textGeometry = new TextGeometry(
-            'nong', {
+            'manong', {
                 font: font,
                 size: 0.5,
                 height: 0.1,
@@ -121,9 +121,9 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 1
-camera.position.y = 1
-camera.position.z = 2
+camera.position.x = 0.65
+camera.position.y = -0.9
+camera.position.z = 2.1
 scene.add(camera)
 
 // Controls
