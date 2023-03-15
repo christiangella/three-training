@@ -16,11 +16,16 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+// axis
+const axesHelper = new THREE.AxesHelper()
+scene.add(axesHelper)
+
 /**
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
 const frozenTexture = textureLoader.load('/textures/matcaps/wettestmatcap3.png')
+const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
 
 /**
  * Fonts
@@ -30,21 +35,30 @@ fontLoader.load(
     '/fonts/Xhers_Regular.json',
     (font) => {
         const textGeometry = new TextGeometry(
-            'MANONG', {
+            'nong', {
                 font: font,
                 size: 0.5,
-                height: 0.2,
-                curveSegments: 12,
+                height: 0.1,
+                curveSegments: 2,
                 bevelEnabled: true,
-                bevelThickness: 0.03,
-                bevelSize: 0.02,
+                bevelThickness: 0.01,
+                bevelSize: 0.001,
                 bevelOffset: 0,
                 bevelSegments: 5
             }
         )
-        const textMaterial = new THREE.MeshMatcapMaterial()
+
+        // textGeometry.computeBoundingBox()
+        // textGeometry.translate(
+        //     - (textGeometry.boundingBox.max.x * 0.5) * 0.5,
+        //     - (textGeometry.boundingBox.max.y * 0.5) * 0.5,
+        //     - textGeometry.boundingBox.max.z * 1.5
+        // )
+        textGeometry.center()
+
+        const textMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture})
+        textMaterial.flatShading = true
         const text = new THREE.Mesh(textGeometry, textMaterial)
-        textMaterial.matcap = frozenTexture
         scene.add(text)
     }
 )
@@ -52,12 +66,12 @@ fontLoader.load(
 /**
  * Object
  */
-const cube = new THREE.Mesh(
-    new THREE.BoxGeometry(1, 1, 1),
-    new THREE.MeshBasicMaterial()
-)
+// const cube = new THREE.Mesh(
+//     new THREE.BoxGeometry(1, 1, 1),
+//     new THREE.MeshBasicMaterial()
+// )
 
-scene.add(cube)
+// scene.add(cube)
 
 /**
  * Sizes
