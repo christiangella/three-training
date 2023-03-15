@@ -10,11 +10,13 @@ const doorColorTexture = textureLoader.load('/textures/door/color.jpg')
 const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg')
 const doorAmbientTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
 
-const matcapTexture = textureLoader.load('/textures/matcaps/3.png')
-const gradientTexture = textureLoader.load('/textures/gradients/3.jpg')
-gradientTexture.minFilter = THREE.NearestFilter
-gradientTexture.magFilter = THREE.NearestFilter
-gradientTexture.generateMipmaps = false
+const frozenTexture = textureLoader.load('/textures/wettestmatcap4.png')
+
+// const matcapTexture = textureLoader.load('/textures/matcaps/3.png')
+// const gradientTexture = textureLoader.load('/textures/gradients/3.jpg')
+// gradientTexture.minFilter = THREE.NearestFilter
+// gradientTexture.magFilter = THREE.NearestFilter
+// gradientTexture.generateMipmaps = false
 
 /**
  * Base
@@ -38,8 +40,8 @@ const scene = new THREE.Scene()
 // const material = new THREE.MeshNormalMaterial()
 // material.flatShading = true
 
-// const material = new THREE.MeshMatcapMaterial()
-// material.matcap = matcapTexture
+const material = new THREE.MeshMatcapMaterial()
+material.matcap = frozenTexture
 
 // const material = new THREE.MeshDepthMaterial()
 
@@ -48,22 +50,23 @@ const scene = new THREE.Scene()
 // material.specular = new THREE.Color(0xff0000)
 
 // const material = new THREE.MeshToonMaterial()
-// material.color.set('goldenrod')
-// material.gradientMap = gradientTexture
+// material.color.set('#0893f0')
+// material.gradientMap = frozenTexture
 
-const material = new THREE.MeshStandardMaterial()
-material.metalness = 0.334
-material.roughness = 0.2472
-material.map = doorColorTexture
-material.aoMap = doorAmbientTexture
-material.aoMapIntensity = 0.7384
+// const material = new THREE.MeshStandardMaterial()
+// material.metalness = 0.334
+// material.roughness = 0.2472
+// material.map = doorColorTexture
+// material.aoMap = doorAmbientTexture
+// material.aoMapIntensity = 0.7384
 
-gui.add(material, 'metalness')
-    .min(0)
-    .max(1)
-    .step(0.0001)
-gui.add(material, 'roughness').min(0).max(1).step(0.0001)
-gui.add(material, 'aoMapIntensity').min(0).max(10).step(0.0001)
+
+// gui.add(material, 'metalness')
+//     .min(0)
+//     .max(1)
+//     .step(0.0001)
+// gui.add(material, 'roughness').min(0).max(1).step(0.0001)
+// gui.add(material, 'aoMapIntensity').min(0).max(10).step(0.0001)
 
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(0.5, 16, 16),
