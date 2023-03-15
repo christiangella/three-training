@@ -4,13 +4,11 @@ import * as dat from 'lil-gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
-console.log(Math.random() * 100)
-
 /**
  * Base
  */
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -19,15 +17,15 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // axis
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
+// const axesHelper = new THREE.AxesHelper()
+// scene.add(axesHelper)
 
 /**
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
 const frozenTexture = textureLoader.load('/textures/matcaps/wettestmatcap3.png')
-// const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
+const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
 
 /**
  * Fonts
@@ -36,6 +34,8 @@ const fontLoader = new FontLoader()
 fontLoader.load(
     '/fonts/Xhers_Regular.json',
     (font) => {
+        const material = new THREE.MeshNormalMaterial()
+
         const textGeometry = new TextGeometry(
             'nong', {
                 font: font,
@@ -62,6 +62,22 @@ fontLoader.load(
         textMaterial.flatShading = true
         const text = new THREE.Mesh(textGeometry, textMaterial)
         scene.add(text)
+
+        const donutGeometry = new THREE.OctahedronGeometry(0.13,0)
+
+        for(let i = 0; i < 200; i++)
+        {
+            const donut = new THREE.Mesh(donutGeometry, material)
+            donut.position.x = (Math.random() - 0.5) * 10
+            donut.position.y = (Math.random() - 0.5) * 10
+            donut.position.z = (Math.random() - 0.5) * 10
+            donut.rotation.x = Math.random() * Math.PI
+            donut.rotation.y = Math.random() * Math.PI
+            const scale = Math.random()
+            donut.scale.set(scale, scale, scale)
+
+            scene.add(donut)
+        }
     }
 )
 
