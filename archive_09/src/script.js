@@ -4,6 +4,8 @@ import * as dat from 'lil-gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 
+console.log(Math.random() * 100)
+
 /**
  * Base
  */
@@ -25,7 +27,7 @@ scene.add(axesHelper)
  */
 const textureLoader = new THREE.TextureLoader()
 const frozenTexture = textureLoader.load('/textures/matcaps/wettestmatcap3.png')
-const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
+// const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
 
 /**
  * Fonts
@@ -56,7 +58,7 @@ fontLoader.load(
         // )
         textGeometry.center()
 
-        const textMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture})
+        const textMaterial = new THREE.MeshNormalMaterial()
         textMaterial.flatShading = true
         const text = new THREE.Mesh(textGeometry, textMaterial)
         scene.add(text)
