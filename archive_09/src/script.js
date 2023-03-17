@@ -26,8 +26,7 @@ scene.background = new THREE.Color( '#f2f2f2' );
  * Textures
  */
 const textureLoader = new THREE.TextureLoader()
-const frozenTexture = textureLoader.load('/textures/matcaps/wettestmatcap3.png')
-const matcapTexture = textureLoader.load('/textures/matcaps/8.png')
+const wetTexture = textureLoader.load('/textures/matcaps/wettestmatcap3.png')
 
 /**
  * Fonts
