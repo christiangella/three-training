@@ -70,8 +70,35 @@ const bush4 = new THREE.Mesh(bushGeometry, BushMaterial)
 bush4.scale.set(0.15, 0.15,0.15)
 bush4.position.set(-1.45,0.01,2.3)
 
+const bush5 = new THREE.Mesh(bushGeometry, BushMaterial)
+bush5.scale.set(0.3, 0.3,0.3)
+bush5.position.set(-1.85,0.01,2.0)
 
-scene.add(bush1, bush2, bush3, bush4)
+const bush6 = new THREE.Mesh(bushGeometry, BushMaterial)
+bush6.scale.set(0.35, 0.35,0.35)
+bush6.position.set(2,0.1,1.6)
+
+// more bushes
+
+const graves = new THREE.Group()
+scene.add(graves)
+
+const graveGeometry = new THREE.BoxBufferGeometry(0.6,0.8,0.2)
+const graveMaterial = new THREE.MeshStandardMaterial({ color: '#b2b6b1'})
+
+for (let i = 0; i < 50; i++) {
+    const angle = Math.random() * Math.PI * 2
+    const radius = 4 + Math.random() * 6
+    const x = Math.cos(angle) * radius
+    const z = Math.sin(angle) * radius
+
+    const grave = new THREE.Mesh(graveGeometry, graveMaterial)
+    grave.position.set (x, 0.3, z)
+    graves.add(grave)
+}
+
+
+scene.add(bush1, bush2, bush3, bush4, bush5, bush6)
 
 // Floor
 const floor = new THREE.Mesh(
