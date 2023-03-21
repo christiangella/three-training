@@ -14,6 +14,9 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+const fog = new THREE.Fog('#262837', 1, 15)
+scene.fog = fog
+
 /**
  * Textures
  */
@@ -94,9 +97,10 @@ for (let i = 0; i < 50; i++) {
 
     const grave = new THREE.Mesh(graveGeometry, graveMaterial)
     grave.position.set (x, 0.3, z)
+    grave.rotation.z = (Math.random() - 0.5) * 0.4
+    grave.rotation.y = (Math.random() - 0.5) * 0.4
     graves.add(grave)
 }
-
 
 scene.add(bush1, bush2, bush3, bush4, bush5, bush6)
 
@@ -113,18 +117,23 @@ scene.add(floor)
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
+const ambientLight = new THREE.AmbientLight('#b9d5ff', 0.09)
 gui.add(ambientLight, 'intensity').min(0).max(1).step(0.001)
 scene.add(ambientLight)
 
 // Directional light
-const moonLight = new THREE.DirectionalLight('#ffffff', 0.5)
+const moonLight = new THREE.DirectionalLight('#ffffff', 0.12)
 moonLight.position.set(4, 5, - 2)
 gui.add(moonLight, 'intensity').min(0).max(1).step(0.001)
 gui.add(moonLight.position, 'x').min(- 5).max(5).step(0.001)
 gui.add(moonLight.position, 'y').min(- 5).max(5).step(0.001)
 gui.add(moonLight.position, 'z').min(- 5).max(5).step(0.001)
 scene.add(moonLight)
+
+const doorLight = new THREE.PointLight('#ff7d46', 1, 7)
+doorLight.position.set(0, 1.9, 2.4)
+house.add(doorLight)
+
 
 /**
  * Sizes
@@ -171,6 +180,7 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.setClearColor('#262837')
 
 /**
  * Animate
