@@ -62,8 +62,16 @@ const bush2 = new THREE.Mesh(bushGeometry, BushMaterial)
 bush2.scale.set(0.25, 0.25,0.25)
 bush2.position.set(1.7,0.1,2.1)
 
+const bush3 = new THREE.Mesh(bushGeometry, BushMaterial)
+bush3.scale.set(0.4, 0.4,0.4)
+bush3.position.set(-1.05,0.1,2.2)
 
-scene.add(bush1, bush2)
+const bush4 = new THREE.Mesh(bushGeometry, BushMaterial)
+bush4.scale.set(0.15, 0.15,0.15)
+bush4.position.set(-1.45,0.01,2.3)
+
+
+scene.add(bush1, bush2, bush3, bush4)
 
 // Floor
 const floor = new THREE.Mesh(
