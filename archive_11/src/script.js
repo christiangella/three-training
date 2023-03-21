@@ -135,6 +135,9 @@ doorLight.position.set(0, 1.9, 2.4)
 house.add(doorLight)
 
 
+const specter1 = new THREE.PointLight('#f20000', 2, 3)
+scene.add(specter1)
+
 /**
  * Sizes
  */
@@ -190,6 +193,11 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    const specterAngle = elapsedTime * 0.5
+    specter1.position.x = Math.cos(specterAngle) * 4
+    specter1.position.z = Math.sin(specterAngle) * 4
+    specter1.position.y = Math.sin(elapsedTime * 3)
 
     // Update controls
     controls.update()
