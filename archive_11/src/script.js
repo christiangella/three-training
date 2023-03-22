@@ -199,7 +199,6 @@ specter1.shadow.mapSize.width = 256
 specter1.shadow.mapSize.height = 256
 specter1.shadow.camera.far = 7
 
-
 walls.castShadow = true
 bush1.castShadow = true
 bush2.castShadow = true
@@ -236,4 +235,3 @@ const tick = () =>
 }
 
 tick()
-console.log((Math.random() - 0.5) * 4)
