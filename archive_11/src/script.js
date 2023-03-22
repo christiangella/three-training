@@ -95,6 +95,8 @@ for (let i = 0; i < 50; i++) {
     const x = Math.cos(angle) * radius
     const z = Math.sin(angle) * radius
 
+
+    //grave scenes
     const grave = new THREE.Mesh(graveGeometry, graveMaterial)
     grave.position.set (x, 0.3, z)
     grave.rotation.z = (Math.random() - 0.5) * 0.4
@@ -134,7 +136,7 @@ const doorLight = new THREE.PointLight('#ff7d46', 1, 7)
 doorLight.position.set(0, 1.9, 2.4)
 house.add(doorLight)
 
-
+//point light specter
 const specter1 = new THREE.PointLight('#f20000', 2, 3)
 scene.add(specter1)
 
@@ -194,6 +196,7 @@ const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
 
+    // adding movement to point light
     const specterAngle = elapsedTime * 0.5
     specter1.position.x = Math.cos(specterAngle) * 4
     specter1.position.z = Math.sin(specterAngle) * 4
