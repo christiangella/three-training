@@ -101,6 +101,7 @@ for (let i = 0; i < 50; i++) {
     grave.position.set (x, 0.3, z)
     grave.rotation.z = (Math.random() - 0.5) * 0.4
     grave.rotation.y = (Math.random() - 0.5) * 0.4
+    grave.castShadow = true
     graves.add(grave)
 }
 
@@ -187,6 +188,28 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.setClearColor('#262837')
 
+// shadows
+renderer.shadowMap.enabled = true
+
+moonLight.castShadow = true
+doorLight.castShadow = true
+
+specter1.castShadow = true
+specter1.shadow.mapSize.width = 256
+specter1.shadow.mapSize.height = 256
+specter1.shadow.camera.far = 7
+
+
+walls.castShadow = true
+bush1.castShadow = true
+bush2.castShadow = true
+bush3.castShadow = true
+bush4.castShadow = true
+bush5.castShadow = true
+bush6.castShadow = true
+
+floor.receiveShadow = true
+
 /**
  * Animate
  */
@@ -213,3 +236,4 @@ const tick = () =>
 }
 
 tick()
+console.log((Math.random() - 0.5) * 4)
