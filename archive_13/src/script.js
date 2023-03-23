@@ -15,50 +15,41 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
- * Textures
+ * Galaxy
  */
-const textureLoader = new THREE.TextureLoader()
-const particleTexture = textureLoader.load('/textures/particles/9.png')
 
-/**
- * Particles
- */
-// Geometry
-const particlesGeometry = new THREE.BufferGeometry()
-const count = 250
+const parameters = {
 
-const positions = new Float32Array(count * 3)
-const colors = new Float32Array(count * 3)
-
-for(let i = 0; i < count * 3; i++)
-{
-    positions[i] = (Math.random() - 0.5) * 10
-    colors[i] = Math.random()
 }
 
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+parameters.count = 1000
+parameters.size = 0.02
 
-// Material
-const particlesMaterial = new THREE.PointsMaterial()
+const generateGalaxy = () => {
 
-particlesMaterial.size = 0.1
-particlesMaterial.sizeAttenuation = true
+    const geometry = new THREE.BufferGeometry()
 
-particlesMaterial.color = new THREE.Color('#f2f200')
+    const positions = new Float32Array(parameters.count *3)
 
-particlesMaterial.transparent = true
-particlesMaterial.alphaMap = particleTexture
-// particlesMaterial.alphaTest = 0.01
-// particlesMaterial.depthTest = false
-particlesMaterial.depthWrite = false
-particlesMaterial.blending = THREE.AdditiveBlending
+    for (let i = 0; i < parameters.count; i++) {
+        const i3 = i * 3
+        positions[i3 + 0] = (Math.random() - 0.5) * 3
+        positions[i3 + 1] = (Math.random() - 0.5) * 3
+        positions[i3 + 2] = (Math.random() - 0.5) * 3
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
-particlesMaterial.vertexColors = true
+    // materials //
+    const material = new THREE.PointsMaterial({
+        size: parameters.size,
+        sizeAttenuation: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+    })
 
-// Points
-const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-scene.add(particles)
+}
+
+generateGalaxy()
 
 /**
  * Sizes
@@ -88,6 +79,8 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+camera.position.x = 3
+camera.position.y = 3
 camera.position.z = 3
 scene.add(camera)
 
@@ -112,16 +105,6 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
-
-    // Update particles
-    for(let i = 0; i < count; i++)
-    {
-        let i3 = i * 3
-
-        const x = particlesGeometry.attributes.position.array[i3]
-        particlesGeometry.attributes.position.array[i3 + 1] = Math.sin(elapsedTime + x)
-    }
-    particlesGeometry.attributes.position.needsUpdate = true
 
     // Update controls
     controls.update()
