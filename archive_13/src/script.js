@@ -22,6 +22,7 @@ const parameters = {
 
 }
 
+// parameters //
 parameters.count = 1000
 parameters.size = 0.02
 parameters.radius = 5
@@ -32,19 +33,21 @@ parameters.randomnessPower = 3
 parameters.insideColor = '#fff'
 parameters.outsideColor = '#f2f200'
 
+// est points
 let geometry = null
 let material = null
 let points = null
 
 const generateGalaxy = () => {
 
+    // remove points
     if(points !== null) {
         geometry.dispose()
         material.dispose()
         scene.remove(points)
     }
 
-
+    // create geometry
     geometry = new THREE.BufferGeometry()
 
     const positions = new Float32Array(parameters.count *3)
