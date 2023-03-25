@@ -33,7 +33,7 @@ const scene = new THREE.Scene()
  */
 // Texture
 const textureLoader = new THREE.TextureLoader()
-const gradientTexture = textureLoader.load('textures/gradients/3.jpg')
+const gradientTexture = textureLoader.load('textures/gradients/5.jpg')
 gradientTexture.magFilter = THREE.NearestFilter
 
 // Material
@@ -57,7 +57,7 @@ const mesh3 = new THREE.Mesh(
     material
 )
 
-mesh1.position.x = 2
+mesh1.position.x = 0
 mesh2.position.x = - 2
 mesh3.position.x = 2
 
