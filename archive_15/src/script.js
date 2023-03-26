@@ -3,6 +3,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 import CANNON from 'cannon'
 
+console.log(CANNON)
+
 /**
  * Debug
  */
@@ -32,19 +34,28 @@ const environmentMapTexture = cubeTextureLoader.load([
     '/textures/environmentMaps/0/nz.png'
 ])
 
-/** PHYSICS */
-/** world */
+/**
+ * Physics
+ */
 const world = new CANNON.World()
-world.gravity.set(0, -9.82, 0)
+world.gravity.set(0, - 9.82, 0)
 
 /** sphere */
 const sphereShape = new CANNON.Sphere(0.5)
 const sphereBody = new CANNON.Body({
     mass: 1,
     position: new CANNON.Vec3(0, 3, 0),
-    sphere: sphereShape
+    shape: sphereShape
 })
 world.addBody(sphereBody)
+
+// floor
+const floorShape = new CANNON.Plane()
+const floorBody = new CANNON.Body()
+floorBody.mass = 0
+floorBody.addShape(floorShape)
+floorBody.quaternion.setFromAxisAngle(new CANNON.Vec3(- 1, 0, 0), Math.PI * 0.5)
+world.addBody(floorBody)
 
 /**
  * Test sphere
@@ -155,12 +166,11 @@ const tick = () =>
     oldElapsedTime = elapsedTime
 
     //update physics
-    world.step(1/60, deltaTime, 3)
+    world.step(1 / 60, deltaTime, 3)
 
-    sphere.position.copy(sphereBody.position)
-    // sphere.position.x = sphereBody.position.x
-    // sphere.position.y = sphereBody.position.y
-    // sphere.position.z = sphereBody.position.z
+    sphere.position.x = sphereBody.position.x
+    sphere.position.y = sphereBody.position.y
+    sphere.position.z = sphereBody.position.z
 
     // Update controls
     controls.update()
