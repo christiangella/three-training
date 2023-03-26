@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
+import CANNON from 'cannon'
 
 /**
  * Debug
@@ -22,7 +23,6 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader()
 const cubeTextureLoader = new THREE.CubeTextureLoader()
 
-// defining textures
 const environmentMapTexture = cubeTextureLoader.load([
     '/textures/environmentMaps/0/px.png',
     '/textures/environmentMaps/0/nx.png',
