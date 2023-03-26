@@ -44,6 +44,7 @@ const sphereBody = new CANNON.Body({
     position: new CANNON.Vec3(0, 3, 0),
     sphere: sphereShape
 })
+world.addBody(sphereBody)
 
 /**
  * Test sphere
@@ -145,10 +146,21 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Animate
  */
 const clock = new THREE.Clock()
+let oldElapsedTime = 0
 
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+    const deltaTime = elapsedTime - oldElapsedTime
+    oldElapsedTime = elapsedTime
+
+    //update physics
+    world.step(1/60, deltaTime, 3)
+
+    sphere.position.copy(sphereBody.position)
+    // sphere.position.x = sphereBody.position.x
+    // sphere.position.y = sphereBody.position.y
+    // sphere.position.z = sphereBody.position.z
 
     // Update controls
     controls.update()
