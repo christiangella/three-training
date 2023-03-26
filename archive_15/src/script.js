@@ -22,6 +22,7 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader()
 const cubeTextureLoader = new THREE.CubeTextureLoader()
 
+// defining textures
 const environmentMapTexture = cubeTextureLoader.load([
     '/textures/environmentMaps/0/px.png',
     '/textures/environmentMaps/0/nx.png',
