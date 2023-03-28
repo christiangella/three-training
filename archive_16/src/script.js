@@ -22,18 +22,15 @@ gltfLoader.load(
     '/models/Duck/glTF/Duck.gltf',
     (gltf) =>
     {
-        console.log('success')
         console.log(gltf)
-    },
-    (progress) =>
+    }
+)
+
+gltfLoader.load(
+    '/models/Duck/glTF/Duck.gltf',
+    (gltf) =>
     {
-        console.log('progress')
-        console.log(progress)
-    },
-    (error) =>
-    {
-        console.log('error')
-        console.log(error)
+        scene.add(gltf.scene.children[0])
     }
 )
 
@@ -51,6 +48,8 @@ const floor = new THREE.Mesh(
 floor.receiveShadow = true
 floor.rotation.x = - Math.PI * 0.5
 scene.add(floor)
+
+
 
 /**
  * Lights
