@@ -43,7 +43,7 @@ const floor = new THREE.Mesh(
     new THREE.MeshStandardMaterial({
         color: '#444444',
         metalness: 0,
-        roughness: 0.5
+        roughness: 0.4
     })
 )
 floor.receiveShadow = true
@@ -59,7 +59,7 @@ scene.add(ambientLight)
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
-directionalLight.shadow.camera.far = 15
+directionalLight.shadow.camera.far = 15.5
 directionalLight.shadow.camera.left = - 7
 directionalLight.shadow.camera.top = 7
 directionalLight.shadow.camera.right = 7
