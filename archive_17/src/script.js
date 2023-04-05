@@ -237,7 +237,7 @@ const tick = () =>
         
         if(modelIntersects.length)
         {
-            model.scale.set(1.2, 1.2, 1.2)
+            model.scale.set(1.1, 1.1, 1.1)
         }
         else
         {

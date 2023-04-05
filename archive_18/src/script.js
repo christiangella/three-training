@@ -43,7 +43,7 @@ const floor = new THREE.Mesh(
     new THREE.MeshStandardMaterial({
         color: '#444444',
         metalness: 0,
-        roughness: 0.4
+        roughness: 0.6
     })
 )
 floor.receiveShadow = true
