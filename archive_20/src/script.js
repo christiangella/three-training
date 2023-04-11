@@ -48,7 +48,7 @@ gltfLoader.load(
 /* 
 Lights
 */
-const directionalLight = new THREE.DirectionalLight('#ffffff', 3)
+const directionalLight = new THREE.DirectionalLight('#ffffff', 2.5)
 directionalLight.position.set(0.25, 3, - 2.25)
 scene.add(directionalLight)
 
