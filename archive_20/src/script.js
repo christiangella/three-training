@@ -7,6 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
  * Loaders
  */
 const gltfLoader = new GLTFLoader()
+const cubeTextureLoader = new THREE.CubeTextureLoader()
 
 /**
  * Base
@@ -20,14 +21,19 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-// /**
-//  * Test sphere
-//  */
-// const testSphere = new THREE.Mesh(
-//     new THREE.SphereGeometry(1, 32, 32),
-//     new THREE.MeshStandardMaterial()
-// )
-// scene.add(testSphere)
+/**
+ * Environment map
+ */
+const environmentMap = cubeTextureLoader.load([
+    '/textures/environmentMaps/0/px.jpg',
+    '/textures/environmentMaps/0/nx.jpg',
+    '/textures/environmentMaps/0/py.jpg',
+    '/textures/environmentMaps/0/ny.jpg',
+    '/textures/environmentMaps/0/pz.jpg',
+    '/textures/environmentMaps/0/nz.jpg'
+])
+
+scene.background = environmentMap
 
 /**
  * Models
@@ -37,7 +43,7 @@ gltfLoader.load(
     (gltf) =>
     {
         gltf.scene.scale.set(10, 10, 10)
-        gltf.scene.position.set(0, - 4, 0)
+        gltf.scene.position.set(0, - 3.5, 0)
         gltf.scene.rotation.y = Math.PI * 0.5
         scene.add(gltf.scene)
 
