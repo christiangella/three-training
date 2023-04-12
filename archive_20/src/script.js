@@ -22,6 +22,17 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
+ * Update all materials
+ */
+const updateAllMaterials = () =>
+{
+    scene.traverse((child) =>
+    {
+        console.log(child)
+    })
+}
+
+/**
  * Environment map
  */
 const environmentMap = cubeTextureLoader.load([
@@ -48,6 +59,8 @@ gltfLoader.load(
         scene.add(gltf.scene)
 
         gui.add(gltf.scene.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation')
+
+        updateAllMaterials()
     }
 )
 
