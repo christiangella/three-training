@@ -62,11 +62,11 @@ gui.add(debugObject, 'envMapIntensity').min(0).max(10).step(0.001).onChange(upda
  * Models
  */
 gltfLoader.load(
-    '/models/FlightHelmet/glTF/FlightHelmet.gltf',
+    '/models/hamburger.glb',
     (gltf) =>
     {
-        gltf.scene.scale.set(10, 10, 10)
-        gltf.scene.position.set(0, - 3.5, 0)
+        gltf.scene.scale.set(0.3, 0.3, 0.3)
+        gltf.scene.position.set(0, 0, 0)
         gltf.scene.rotation.y = Math.PI * 0.5
         scene.add(gltf.scene)
 
@@ -84,6 +84,7 @@ directionalLight.position.set(0.25, 3, - 2.25)
 directionalLight.castShadow = true
 directionalLight.shadow.camera.far = 15
 directionalLight.shadow.mapSize.set(1024, 1024)
+directionalLight.shadow.normalBias = 0.05
 scene.add(directionalLight)
 
 // const directionalLightCameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
