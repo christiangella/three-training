@@ -73,7 +73,8 @@ gltfLoader.load(
     {
         gltf.scene.scale.set(0.4, 0.4, 0.4)
         gltf.scene.position.set(0, -1, 0)
-        gltf.scene.rotation.y = Math.PI * 0.25
+        gltf.scene.rotation.y = Math.PI * 0.20
+        gltf.scene.rotation.z = -0.2
         scene.add(gltf.scene)
 
         gui.add(gltf.scene.rotation, 'y').min(- Math.PI).max(Math.PI).step(0.001).name('rotation')
