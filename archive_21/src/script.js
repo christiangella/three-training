@@ -58,8 +58,8 @@ environmentMap.encoding = THREE.sRGBEncoding
 // scene.background = environmentMap
 scene.environment = environmentMap
 
-debugObject.envMapIntensity = 0.4
-gui.add(debugObject, 'envMapIntensity').min(0).max(4).step(0.001).onChange(updateAllMaterials)
+debugObject.envMapIntensity = 0.35
+gui.add(debugObject, 'envMapIntensity').min(0).max(4.5).step(0.001).onChange(updateAllMaterials)
 
 /**
  * Models
@@ -71,7 +71,7 @@ gltfLoader.load(
     (gltf) =>
     {
         // Model
-        gltf.scene.scale.set(0.02, 0.02, 0.02)
+        gltf.scene.scale.set(0.015, 0.015, 0.015)
         scene.add(gltf.scene)
 
         // Animation
